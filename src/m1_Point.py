@@ -6,7 +6,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
          and Triston Hine.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
-
+import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -50,7 +50,9 @@ class Point(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
+        self.numMoved = 0
+        self.originx = self.x
+        self.originy = self.y
     def __repr__(self):
         return "Point({}, {})".format(self.x, self.y)
 
@@ -60,20 +62,19 @@ class Point(object):
     def move_to(self, x, y):
         self.x = x
         self.y = y
-
+        self.numMoved = self.numMoved + 1
     def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
-
+        self.numMoved = self.numMoved + 1
     def get_number_of_moves_made(self):
-        return (self.move_to(self.x, self.y) / (self.move_by(self.x, self.y)))
- # I am done, i have absolutely no idea what on earth I am supposed to do with this, and I am not asking the TA to solve the entire thing.
+        return self.numMoved
 
-    #def get_distance_from(self):
+    def get_distance_from(self, p2):
+        return math.sqrt(((p2.x - self.x) ** 2) + ((p2.y - self.y) ** 2))
 
-
-    #def get_distance_from_START(self):
-
+    def get_distance_from_START(self):
+        return math.sqrt(((self.x - self.originx) ** 2) + ((self.y - self.originy) ** 2))
 
     #def get_distance_traveled(self):
 
@@ -599,9 +600,9 @@ def run_test_get_number_of_moves_made():
         print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
     """
     # -------------------------------------------------------------------------
-    # NOT DOING IT ANYMORE: 8.  Follow the same instructions as in _TODO_ 3 above,
+    # : 8.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_number_of_moves_made  method specified above.
-    # NOT DOING IT ANYMORE (continued):  HINT: What must a Point REMEMBER for this method? I don't know, this function has nothing 'self' so i dont get it.
+    # (continued):  HINT: What must a Point REMEMBER for this method?
     # -------------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
@@ -715,7 +716,7 @@ def run_test_get_distance_from():
         print('Actual   p2 to p4:', p2.get_distance_from(p4))
     """
     # -------------------------------------------------------------------------
-    # TODO: 9.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 9.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_from  method specified above.
     # -------------------------------------------------------------------------
     print()
@@ -808,7 +809,7 @@ def run_test_get_distance_from_start():
         print('Actually is:', p2.get_distance_from_start())
     """
     # -------------------------------------------------------------------------
-    # TODO: 10.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 10.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_from_START  method specified above.
     # -------------------------------------------------------------------------
     print()
